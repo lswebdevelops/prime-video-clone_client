@@ -25,15 +25,21 @@ function Movie() {
   return (
     <div>
       <h1>Movies you may like:</h1>
-      {/* <pre>{JSON.stringify(data, null , 2)}</pre> */}
-      <ul>
+      <ul className="ul-movies-container">
         {data.map((item) => (
-          <>
-            <li key={item._id}>{item.title}</li>: <span>{item.type}</span>
-            <Link to={`/movies/${item.slug}`}>
-              <img src={`${serverUrl}/uploads/${item.thumbnail}`} alt={`${item.title}`} />
-            </Link>
-          </>
+          <li>
+            {item.type === "movie" && (
+              <Link to={`/movies/${item._id}`}>
+                <div>
+                  <img
+                    className="image-movies"
+                    src={`${serverUrl}/uploads/${item.thumbnail}`}
+                    alt={item.title}
+                  />
+                </div>
+              </Link>
+            )}
+          </li>
         ))}
       </ul>
     </div>
