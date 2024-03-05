@@ -1,4 +1,5 @@
-import logo from '../assets/logo_prime_video_foto_reproducao.jpg'
+import logo from "../assets/Logo-min.png";
+
 function Footer() {
   return (
     <footer>

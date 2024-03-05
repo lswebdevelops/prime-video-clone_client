@@ -5,6 +5,8 @@ function Movie() {
   const serverUrl = `${import.meta.env.VITE_SERVER_URL}`;
   const baseUrl = `${serverUrl}/api/movies`;
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetshData = async () => {
@@ -15,8 +17,11 @@ function Movie() {
         }
         const jsonData = await response.json();
         setData(jsonData);
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
+        setError("Error by fetching data. Please try again later.");
+        setIsLoading(false);
       }
     };
     fetshData();
@@ -25,23 +30,45 @@ function Movie() {
   return (
     <div>
       <h1>Movies you may like:</h1>
-      <ul className="ul-movies-container">
-        {data.map((item) => (
-          <li>
-            {item.type === "movie" && (
-              <Link to={`/movies/${item._id}`}>
-                <div>
-                  <img
-                    className="image-movies"
-                    src={`${serverUrl}/uploads/${item.thumbnail}`}
-                    alt={item.title}
-                  />
+
+      {isLoading ? (
+        <p>Loading ...</p>
+      ) : error ? (
+        <p>{error}</p>
+      ) : (
+        <ul className="ul-movies-container">
+          {data.map((item) => (
+            <li key={item._id}>
+              {item.type === "movie" && (
+                <div className="img_wrap">
+                  <Link to={`/movies/${item._id}`}>
+                    <img
+                      className="image-movies img_img"
+                      src={`${serverUrl}/uploads/${item.thumbnail}`}
+                      alt={item.title}
+                    />
+                  </Link>
+
+                  <div className="img_description">
+                    <div className="add-fav-title-container">
+                      <Link to={`/movies/${item._id}`}>
+                        <p>&nbsp; {item.title}</p>
+                      </Link>
+                      <button>+</button>
+                    </div>
+                    <div className="div-year-lenght-container">
+                      <p>
+                        &nbsp; Year: {item.year} <span>{item.length} min</span>
+                      </p>
+                    </div>
+                    <p className="para-img-description">{item.description}</p>
+                  </div>
                 </div>
-              </Link>
-            )}
-          </li>
-        ))}
-      </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

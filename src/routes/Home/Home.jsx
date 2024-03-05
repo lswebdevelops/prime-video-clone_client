@@ -14,6 +14,7 @@ function Home() {
       let url = baseUrl;
       if (selectedGenre) {
         url += `?genre=${encodeURIComponent(selectedGenre)}`;
+        
       }
 
       try {
@@ -42,6 +43,8 @@ function Home() {
       ) : (
         <div>
           <h1>All you can find:</h1>
+         <div className="div-category">
+         <h2>Category:</h2>
           <select onChange={(e) => setSelectedGenre(e.target.value)}>
             <option value="">All</option>
             <option value="sci-fi">Sci-Fi</option>
@@ -59,6 +62,8 @@ function Home() {
             <option value="horror">Horror</option>
           </select>
 
+         </div>
+<hr />
           <ul className="ul-movies-container">
             {data.map((item) => (
               <li key={item._id}>

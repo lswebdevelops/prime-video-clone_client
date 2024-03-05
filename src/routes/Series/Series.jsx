@@ -32,22 +32,38 @@ function Series() {
   return (
     <div>
       <h1>Series you may like:</h1>
-      <ul className="ul-movies-container">
-        {seriesData.map((item) => (
-          <li key={item._id}>
-            <Link to={`/series/${item._id}`}>
-              <div>
+      {isLoading ? (
+        <p>Loading ...</p>
+      ) : error ? (
+        <p>{error}</p>
+      ) : (
+        <ul className="ul-movies-container">
+          {seriesData.map((item) => (
+            <li key={item._id} className="img_wrap">
+              <Link to={`/series/${item._id}`}>
                 <img
-                  className="image-movies"
+                  className="image-movies img_img"
                   src={`${serverUrl}/uploads/${item.thumbnail}`}
-                  alt={`${item.title}`}
+                  alt={item.title}
                 />
-                <h2>{item.title}</h2>
+              </Link>
+
+              <div className="img_description">
+                <div className="add-fav-title-container">
+                  <Link to={`/series/${item._id}`}>
+                    <p>&nbsp; {item.title}</p>
+                  </Link>
+                  <button>+</button>
+                </div>
+                <div className="div-year-lenght-container">
+                  <p>&nbsp; Year: {item.year}</p>
+                </div>
+                <p className="para-img-description">{item.description}</p>
               </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
