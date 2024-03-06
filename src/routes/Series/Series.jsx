@@ -28,7 +28,9 @@ function Series() {
     };
     fetchSeries();
   }, []);
-
+  
+  // shuffle data 
+  const shuffledData = [...seriesData].sort(() => Math.random() - 0.5);
   return (
     <div>
       <h1>Series you may like:</h1>
@@ -38,7 +40,7 @@ function Series() {
         <p>{error}</p>
       ) : (
         <ul className="ul-movies-container">
-          {seriesData.map((item) => (
+          {shuffledData.map((item) => (
             <li key={item._id} className="img_wrap">
               <Link to={`/series/${item._id}`}>
                 <img

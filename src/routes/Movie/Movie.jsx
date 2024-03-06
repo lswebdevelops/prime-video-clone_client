@@ -27,6 +27,8 @@ function Movie() {
     fetshData();
   }, []);
 
+  // shuffle data 
+  const shuffeledData = [...data].sort(() => Math.random() -0.5);
   return (
     <div>
       <h1>Movies you may like:</h1>
@@ -37,7 +39,7 @@ function Movie() {
         <p>{error}</p>
       ) : (
         <ul className="ul-movies-container">
-          {data.map((item) => (
+          {shuffeledData.map((item) => (
             <li key={item._id}>
               {item.type === "movie" && (
                 <div className="img_wrap">

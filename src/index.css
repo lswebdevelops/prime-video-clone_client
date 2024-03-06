@@ -8,15 +8,10 @@ p {
 
 .logo {
   width: 75px;
-  border-radius: 5px;
+ 
 }
 
-footer .logo {
-  width: 105px;
-  border-radius: 5px;
-  margin-right: 8px;
-  margin-bottom: -4px;
-}
+
 .ul-movies-container {
   display: flex;
   gap: 22px;
@@ -44,7 +39,7 @@ li {
 
 .nav-header {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 8%;
 }
 .div-category {
@@ -139,8 +134,88 @@ li {
 
 /*  single movie page */
 .image-movies-single {
-  width: 250px;
+  width: 80%;
+  max-width: 350px;;
   margin: 15px;;
   border-radius: 8px;
 }
+
+
+
+/* single-page-container */
+
+.single-page-container * {
+  padding: 0;
+  margin: 0;;
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;;
+  justify-content: center;
+  align-items: center;
+  ;
+  ;
+}
+.single-page-container {
+margin-bottom: 150px;;
+}
+.hr-single-page{
+  
+  width: 33%;
+  ;
+}
+
+
+/* footer */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  
+  text-align: center;
+  padding: 10px; 
+ 
+}
+
+footer .logo {
+  width: 105px;  
+  margin-right: 8px;
+  margin-bottom: -4px;
+}
+
+
+
+/* END SINGLE CATEGORY PAGE */
+/********** Large devices only **********/
+@media (min-width: 1200px) {
+  
+}
+/********** Medium devices only **********/
+@media (min-width: 992px) and (max-width: 1199px) {
+  
+}
+
+/********** Small devices only **********/
+@media (min-width: 768px) and (max-width: 991px) {
+  
+ 
+}
+/********** Extra small devices only **********/
+@media (max-width: 767px) {
+}
+  
+/********** Super extra small devices Only :-) (e.g., iPhone 4) **********/
+@media (max-width: 479px) {
+  /*  small screens  */
+
+.nav-header {
+  display: flex;
+  justify-content: center;
+  gap: 2%;
+}
+h1 {
+  font-size: 1.3rem;;
+}
+.ul-movies-container  {
+  padding: 0;;
+}}
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, json } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Home() {
   const serverUrl = `${import.meta.env.VITE_SERVER_URL}`;
@@ -34,6 +34,10 @@ function Home() {
     fetchData();
   }, [selectedGenre]);
 
+			// shuffle the data
+				const shuffledData = [...data].sort(() => Math.random() -0.5);
+																 
+
   return (
     <>
       {isLoading ? (
@@ -61,21 +65,40 @@ function Home() {
             <option value="comedy">Comedy</option>
             <option value="horror">Horror</option>
           </select>
+						 
 
          </div>
 <hr />
           <ul className="ul-movies-container">
-            {data.map((item) => (
-              <li key={item._id}>
-                <Link to={`/movies/${item._id}`}>
-                  <div>
-                    <img
-                      className="image-movies"
-                      src={`${serverUrl}/uploads/${item.thumbnail}`}
-                      alt={item.title}
-                    />
+            {shuffledData.map((item) => (
+                <li key={item._id}>
+                
+                  <div className="img_wrap">
+                    <Link to={`/movies/${item._id}`}>
+                      <img
+                        className="image-movies img_img"
+                        src={`${serverUrl}/uploads/${item.thumbnail}`}
+                        alt={item.title}
+                      />
+                    </Link>
+  
+                    <div className="img_description">
+                      <div className="add-fav-title-container">
+                        <Link to={`/movies/${item._id}`}>
+                          <p>&nbsp; {item.title}</p>
+                        </Link>
+                        <button>+</button>
+                      </div>
+                      <div className="div-year-lenght-container">
+                        <p>
+                          &nbsp; Year: {item.year} <span>{item.length} min</span>
+                        </p>
+                      </div>
+                      <p className="para-img-description">{item.description}</p>
+                    </div>
+																			  
                   </div>
-                </Link>
+                
               </li>
             ))}
           </ul>

@@ -5,8 +5,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Movie from "./routes/Movie/Movie";
 import Series from "./routes/Series/Series"
-import SingleMovie from "./routes/Movie/singleMovie";
-
+ import SingleMovie from "./routes/Movie/SingleMovie";
+ import SingleSeries from "./routes/Series/SingleSeries";
 
 function App() {
 
@@ -18,8 +18,9 @@ function App() {
           <Route  path="/"  element={<Home />}/>
           <Route  path="/profile"  element={<Profile />}/>
           <Route  path="/movies"  element={<Movie />}/>
-          <Route  path="/series"  element={<Series />}/>
           <Route  path="/movies/:id"  element={<SingleMovie />}/>
+          <Route  path="/series"  element={<Series />}/>
+          <Route  path="/series/:id"  element={<SingleSeries />}/>
         </Routes>
         <Footer />
       </Router>

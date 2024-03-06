@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-function SingleMovie() {
+function SingleSeries() {
   const serverUrl = `${import.meta.env.VITE_SERVER_URL}`;
   const [data, setData] = useState([]);
   const urlId = useParams();
 
-  const baseUrl = `${serverUrl}/api/movies/${urlId.id}`;
+  const baseUrl = `${serverUrl}/api/series/${urlId.id}`;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,34 +30,32 @@ function SingleMovie() {
       {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
 
       <div>
+
         {data.type === "movie" ? (
-        <Link to={"/movies"}>Back to Movies</Link>
+
+          <Link to={"/movies"}>Back to Movies</Link>
         ): (
-          <Link to={"/series"}>Back Series</Link>
-        )}
+          <Link to={"/series"}>Back to Series</Link>
+
+        )
+
+        }
 
 
-
+        <img  className="image-movies-single" src={`${serverUrl}/uploads/${data.thumbnail}`} alt="" />
         <h2>{data.title}</h2>
-        <img
-          className="image-movies-single"
-          src={`${serverUrl}/uploads/${data.thumbnail}`}
-          alt=""
-        />
         
           {data?.genre?.map((item, index) => (
             <li key={index}>{item.toUpperCase()}</li>
           ))}
         
-        <hr className="hr-single-page" />
-        <div className="div-year-lenght-container">
-          <p>Year: {data.year}</p>
-         {data.length &&  <p>{data.length} min</p>}
-        </div>
+              <hr className="hr-single-page" />
+       <p>Year: {data.year}    </p>
+     
         <p>{data.description}</p>
       </div>
     </div>
   );
 }
 
-export default SingleMovie;
+export default SingleSeries;
