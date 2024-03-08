@@ -8,9 +8,7 @@ p {
 
 .logo {
   width: 75px;
- 
 }
-
 
 .ul-movies-container {
   display: flex;
@@ -120,6 +118,49 @@ li {
   scale: 1.1;
   cursor: pointer;
 }
+.button-favorite {
+  background-color: rgb(241, 73, 69);
+  border-radius: 2px;
+  background-color: rgb(241, 73, 69);
+  font-size: 0.9rem;
+  border: solid  1px rgb(241, 73, 69);
+  color: white; /* Ensure text is visible on red background */  
+  cursor: pointer;
+  position: relative; /* Required for proper positioning */
+}
+
+.button-favorite::after {
+  content: "Add to favorites"; /* Replace with your desired text */
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0; 
+  height: 25px;;
+  width: 115px; 
+  margin-right: 2px; 
+  text-align: center; 
+  line-height: calc(1em + 2px); /* Adjust line height for proper alignment */
+  color: transparent; /* Initially hide text */
+}
+
+.button-favorite:hover::after {
+  position: absolute;
+  top: -35px;
+  left: -82px;; 
+  display: flex;
+  border: solid  1px rgb(241, 73, 69);
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 2px 2px 2px rgb(29, 28, 28);
+  background-color: rgb(241, 73, 69);
+  border-radius: 5px;;
+  color: white; /* Display text on hover with desired color */
+}
+.button-icon-favorite {
+ 
+    background-color: rgb(241, 73, 69);
+  font-size: 1.2rem;
+}
 .add-fav-title-container p {
   font-size: 1rem;
 }
@@ -131,91 +172,88 @@ li {
   width: 230px;
 }
 
-
 /*  single movie page */
 .image-movies-single {
   width: 80%;
-  max-width: 350px;;
-  margin: 15px;;
+  max-width: 350px;
+  margin: 15px;
   border-radius: 8px;
 }
-
-
 
 /* single-page-container */
 
 .single-page-container * {
   padding: 0;
-  margin: 0;;
+  margin: 0;
   margin-top: 35px;
   display: flex;
-  flex-direction: column;;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  ;
-  ;
 }
 .single-page-container {
-margin-bottom: 150px;;
+  margin-bottom: 150px;
 }
-.hr-single-page{
-  
+.hr-single-page {
   width: 33%;
-  ;
 }
-
 
 /* footer */
 .footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  
+
   text-align: center;
-  padding: 10px; 
- 
+  padding: 10px;
 }
 
 footer .logo {
-  width: 105px;  
+  width: 105px;
   margin-right: 8px;
   margin-bottom: -4px;
 }
 
-
-
 /* END SINGLE CATEGORY PAGE */
 /********** Large devices only **********/
 @media (min-width: 1200px) {
-  
 }
 /********** Medium devices only **********/
 @media (min-width: 992px) and (max-width: 1199px) {
-  
 }
 
 /********** Small devices only **********/
 @media (min-width: 768px) and (max-width: 991px) {
-  
- 
 }
 /********** Extra small devices only **********/
 @media (max-width: 767px) {
+  .add-fav-title-container {
+    display: flex;
+    flex-direction: column; 
+    height: 80px;;
+    margin: 15px;
+  }
+  .button-favorite:hover::after {
+    position: absolute;
+    top: 35px;
+    left: -38px;; 
+  }
 }
-  
+
 /********** Super extra small devices Only :-) (e.g., iPhone 4) **********/
 @media (max-width: 479px) {
   /*  small screens  */
 
-.nav-header {
-  display: flex;
-  justify-content: center;
-  gap: 2%;
-}
-h1 {
-  font-size: 1.3rem;;
-}
-.ul-movies-container  {
-  padding: 0;;
-}}
+  .nav-header {
+    display: flex;
+    justify-content: center;
+    gap: 2%;
+  }
+  h1 {
+    font-size: 1.3rem;
+  }
+  .ul-movies-container {
+    padding: 0;
+  }
 
+}

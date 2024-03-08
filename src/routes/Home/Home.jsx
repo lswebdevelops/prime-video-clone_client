@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { FaHeartCircleCheck } from "react-icons/fa6";
 
 function Home() {
   const serverUrl = `${import.meta.env.VITE_SERVER_URL}`;
@@ -87,7 +88,7 @@ function Home() {
                         <Link to={`/movies/${item._id}`}>
                           <p>&nbsp; {item.title}</p>
                         </Link>
-                        <button>+</button>
+                        <button className="button-favorite"><FaHeartCircleCheck className="button-favorite button-icon-favorite" /></button>
                       </div>
                       <div className="div-year-lenght-container">
                         <p>
