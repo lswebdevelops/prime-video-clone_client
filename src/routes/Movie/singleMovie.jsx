@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { FaPlayCircle } from "react-icons/fa";
 
 function SingleMovie() {
   const serverUrl = `${import.meta.env.VITE_SERVER_URL}`;
@@ -39,12 +40,16 @@ function SingleMovie() {
 
 
         <h2>{data.title}</h2>
+        
+
         <img
           className="image-movies-single"
           src={`${serverUrl}/uploads/${data.thumbnail}`}
           alt=""
         />
-        
+        <Link to={`https:${data.link}`} target="_blanc">
+                  <FaPlayCircle className="play-button" />
+                </Link>
           {data?.genre?.map((item, index) => (
             <li key={index}>{item.toUpperCase()}</li>
           ))}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, json } from "react-router-dom";
+import { FaPlayCircle } from "react-icons/fa";
 
 function Movie() {
   const serverUrl = `${import.meta.env.VITE_SERVER_URL}`;
@@ -58,6 +59,10 @@ function Movie() {
                       </Link>
                       <button>+</button>
                     </div>
+                    <Link to={`https:${item.link}`} target="_blanc">
+                  <FaPlayCircle className="play-button" />
+                </Link>
+
                     <div className="div-year-lenght-container">
                       <p>
                         &nbsp; Year: {item.year} <span>{item.length} min</span>

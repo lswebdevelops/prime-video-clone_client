@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { FaPlayCircle } from "react-icons/fa";
 
 function Series() {
   const serverUrl = `${import.meta.env.VITE_SERVER_URL}`;
@@ -28,8 +29,8 @@ function Series() {
     };
     fetchSeries();
   }, []);
-  
-  // shuffle data 
+
+  // shuffle data
   const shuffledData = [...seriesData].sort(() => Math.random() - 0.5);
   return (
     <div>
@@ -57,6 +58,9 @@ function Series() {
                   </Link>
                   <button>+</button>
                 </div>
+                <Link to={`https:${item.link}`} target="_blanc">
+                  <FaPlayCircle className="play-button" />
+                </Link>
                 <div className="div-year-lenght-container">
                   <p>&nbsp; Year: {item.year}</p>
                 </div>

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaHeartCircleCheck } from "react-icons/fa6";
+import { FaThumbsUp } from "react-icons/fa6";
+import { FaThumbsDown } from "react-icons/fa6";
 
 function Home() {
   const serverUrl = `${import.meta.env.VITE_SERVER_URL}`;
@@ -15,7 +17,6 @@ function Home() {
       let url = baseUrl;
       if (selectedGenre) {
         url += `?genre=${encodeURIComponent(selectedGenre)}`;
-        
       }
 
       try {
@@ -35,10 +36,13 @@ function Home() {
     fetchData();
   }, [selectedGenre]);
 
-			// shuffle the data
-				const shuffledData = [...data].sort(() => Math.random() -0.5);
-																 
+  // shuffle the data
+  const shuffledData = [...data].sort(() => Math.random() - 0.5);
 
+  // Format number with commas and dots
+  const formatNumber = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
   return (
     <>
       {isLoading ? (
@@ -48,58 +52,68 @@ function Home() {
       ) : (
         <div>
           <h1>All you can find:</h1>
-         <div className="div-category">
-         <h2>Category:</h2>
-          <select onChange={(e) => setSelectedGenre(e.target.value)}>
-            <option value="">All</option>
-            <option value="sci-fi">Sci-Fi</option>
-            <option value="action">Action</option>
-            <option value="thriller">Thriller</option>
-            <option value="drama">Drama</option>
-            <option value="crime">Crime</option>
-            <option value="romance">Romance</option>
-            <option value="adventure">Adventure</option>
-            <option value="fantasy">Fantasy</option>
-            <option value="biography">Biography</option>
-            <option value="history">History</option>
-            <option value="mystery">Mystery</option>
-            <option value="comedy">Comedy</option>
-            <option value="horror">Horror</option>
-          </select>
-						 
-
-         </div>
-<hr />
+          <div className="div-category">
+            <h2>Category:</h2>
+            <select onChange={(e) => setSelectedGenre(e.target.value)}>
+              <option value="">All</option>
+              <option value="sci-fi">Sci-Fi</option>
+              <option value="action">Action</option>
+              <option value="thriller">Thriller</option>
+              <option value="drama">Drama</option>
+              <option value="crime">Crime</option>
+              <option value="romance">Romance</option>
+              <option value="adventure">Adventure</option>
+              <option value="fantasy">Fantasy</option>
+              <option value="biography">Biography</option>
+              <option value="history">History</option>
+              <option value="mystery">Mystery</option>
+              <option value="comedy">Comedy</option>
+              <option value="horror">Horror</option>
+            </select>
+          </div>
+          <hr />
           <ul className="ul-movies-container">
             {shuffledData.map((item) => (
-                <li key={item._id}>
-                
-                  <div className="img_wrap">
-                    <Link to={`/movies/${item._id}`}>
-                      <img
-                        className="image-movies img_img"
-                        src={`${serverUrl}/uploads/${item.thumbnail}`}
-                        alt={item.title}
-                      />
-                    </Link>
-  
-                    <div className="img_description">
-                      <div className="add-fav-title-container">
-                        <Link to={`/movies/${item._id}`}>
-                          <p>&nbsp; {item.title}</p>
-                        </Link>
-                        <button className="button-favorite"><FaHeartCircleCheck className="button-favorite button-icon-favorite" /></button>
-                      </div>
-                      <div className="div-year-lenght-container">
-                        <p>
-                          &nbsp; Year: {item.year} <span>{item.length} min</span>
-                        </p>
-                      </div>
-                      <p className="para-img-description">{item.description}</p>
+              <li key={item._id}>
+                <div className="img_wrap">
+                  <Link to={`/movies/${item._id}`}>
+                    <img
+                      className="image-movies img_img"
+                      src={`${serverUrl}/uploads/${item.thumbnail}`}
+                      alt={item.title}
+                    />
+                  </Link>
+
+                  <div className="img_description">
+                    <div className="add-fav-title-container">
+                      <Link to={`/movies/${item._id}`}>
+                        <p>&nbsp; {item.title}</p>
+                      </Link>
+
+                      <button className="button-favorite">
+                        <FaHeartCircleCheck className="button-favorite button-icon-favorite" />
+                      </button>
                     </div>
-																			  
+                    <div className="like-dislike-container">
+                      <button className="button-like">
+                        {" "}
+                        <FaThumbsUp className="button-like-icon" />{" "}
+                        {formatNumber(item.likes)}
+                      </button>
+                      <span className="button-like-span">|</span>
+                      <button className="button-dislike">
+                        {" "}
+                        <FaThumbsDown className="button-dislike-icon" />
+                      </button>
+                    </div>
+                    <div className="div-year-lenght-container">
+                      <p>
+                        &nbsp; Year: {item.year} <span>{item.length} min</span>
+                      </p>
+                    </div>
+                    <p className="para-img-description">{item.description}</p>
                   </div>
-                
+                </div>
               </li>
             ))}
           </ul>
